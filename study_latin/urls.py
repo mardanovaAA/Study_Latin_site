@@ -23,4 +23,5 @@ urlpatterns = [
     path('phrases_list', views.phrases_list),
     path('add_term', views.add_term),
     path('add_phrase', views.add_phrase),
+    path('send_term', views.send_term),
 ]
