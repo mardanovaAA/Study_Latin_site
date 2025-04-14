@@ -1,1 +1,55 @@
 {% extends "base_page.html" %}
+
+{% block page-title %}
+Добавление крылатого выражения
+{% endblock %}
+
+{% block page-lead %}
+Заполните форму, чтобы записать на память понравившееся крылатое выражение на латинском языке. 
+{% endblock %}
+
+{% block content %}
+<div class="container-sm px-5 py-5" id="term-form">
+    <form method="post">
+        <div class="row px-5 py-2 border-bottom">
+            <h3 class="latin-heading">Крылатое выражение</h3>
+        </div>
+        <div class="row px-5 py-2">
+            <div class="col-md-6 mb-3">
+                <label for="latin_phrase" class="form-label">Фраза на латыни:</label>
+                <input type="text" class="form-control" name="latin_phrase" id="latin_phrase" placeholder="e.g. Per aspera ad astra" required>
+                <div class="form-text">Напишите фразу латинскими буквами</div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="transcription_phrase" class="form-label">Транскрипция:</label>
+                <input type="text" class="form-control" name="transcription_phrase" id="transcription_phrase" placeholder="e.g. [пэр ʹаспера ад ʹастра]" required>
+                <div class="form-text">Фонетическая транскрипция на русском</div>
+            </div>
+        </div>
+
+        <div class="row px-5 py-2">
+            <div class="col-md-6 mb-3">
+                <label for="translation_phrase" class="form-label">Перевод:</label>
+                <input type="text" class="form-control" name="translation_phrase" id="translation_phrase" placeholder="e.g. Через тернии к звёздам" required>
+                <div class="form-text">Смысловой перевод фразы</div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="source_phrase" class="form-label">Источник:</label>
+                <input type="text" class="form-control" name="source_phrase" id="source_phrase" placeholder="e.g. Сенека" required>
+                <div class="form-text">Автор/источник/дата</div>
+            </div>
+        </div>
+
+
+        <!-- Кнопка отправки -->
+        <div class="row px-5 py-4">
+            <div class="col-md-12 d-grid">
+                <button type="submit" class="btn btn-latin-outline px-4 py-2 rounded-pill" formaction="/send_phrase">
+                    Добавить фразу
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

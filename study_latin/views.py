@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.cache import cache
 from . import terms_work
+from . import phrases_work
 
 def index(request):
     return render(request, "index.html")
@@ -47,6 +48,40 @@ def send_term(request):
         if context["success"]:
             context["success-title"] = ""
             print(1)
-        return render(request, "term_request.html", context)
+        return render(request, "adding_request.html", context)
     else:
         add_term(request)
+
+def send_phrase(request):
+    if request.method == "POST":
+        cache.clear()
+        latin_phrase = request.POST.get("latin_phrase")
+        transcription_phrase = request.POST.get("transcription_phrase")
+        translation_phrase = request.POST.get("translation_phrase")
+        source_phrase = request.POST.get("source_phrase")
+        context = {}
+        if len(latin_phrase) == 0:
+            context["success"] = False
+            context["comment"] = "Термин должен быть не пустым"
+        elif len(transcription_phrase) == 0:
+            context["success"] = False
+            context["comment"] = "Транскрипция должна быть не пустой"
+        elif len(translation_phrase) == 0:
+            context["success"] = False
+            context["comment"] = "Перевод должен быть не пустым"
+        elif len(source_phrase) == 0:
+            context["success"] = False
+            context["comment"] = "Источник должен быть не пустым"
+        else:
+            context["success"] = True
+            context["comment"] = "Ваш термин принят!"
+            print(0)
+            phrases_work.write_term(latin_phrase, transcription_phrase, translation_phrase, source_phrase)
+            print(1)
+        if context["success"]:
+            context["success-title"] = ""
+            print(1)
+        return render(request, "adding_request.html", context)
+    else:
+        add_term(request)
+
