@@ -1,5 +1,102 @@
 {% extends "base_page.html" %}
 
+{% block page-title %}
+Словарь терминов
+{% endblock %}
 
+{% block page-lead %}
+Полный список латинских терминов с транскрипциями и переводами
+{% endblock %}
 
+{% block content %}
+<div class="container px-4 py-5" id="latin-dictionary">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-text bg-burgundy text-white">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input type="text" class="form-control" id="searchInput" placeholder="Поиск по терминам...">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <select class="form-select" id="categoryFilter">
+                <option value="">Все категории</option>
+                <option value="Физика">Физика</option>
+                <option value="Математика">Математика</option>
+                <option value="Медицина">Медицина</option>
+                <option value="Философия">Философия</option>
+            </select>
+        </div>
+    </div>
 
+    <!-- Таблица терминов -->
+    <div class="table-responsive">
+        <table class="table table-hover align-middle" id="termsTable">
+            <thead class="table-burgundy">
+                <tr>
+                    <th scope="col" width="5%">#</th>
+                    <th scope="col" width="20%">Термин</th>
+                    <th scope="col" width="15%">Транскрипция</th>
+                    <th scope="col" width="20%">Перевод</th>
+                    <th scope="col" width="10%">Категория</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cnt, category_term, latin_term, transcription_term, translation_term in terms %}
+                <tr class="term-row" data-category="{{ category_term }}">
+                    <td>{{ cnt }}</td>
+                    <td class="latin-term">{{ latin_term }}</td>
+                    <td>{{ transcription_term }}</td>
+                    <td>{{ translation_term }}</td>
+                    <td>
+                        <span class="badge bg-burgundy-light">
+                            {{ category_term }}
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card border-burgundy">
+                <div class="card-body py-2">
+                    <div class="d-flex justify-content-between">
+                        <span class="small">Всего терминов: <strong>{{ terms|length }}</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Простой поиск по таблице
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        const input = this.value.toLowerCase();
+        const rows = document.querySelectorAll('.term-row');
+        
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            row.style.display = text.includes(input) ? '' : 'none';
+        });
+    });
+    
+    // Фильтрация по категориям
+    document.getElementById('categoryFilter').addEventListener('change', function() {
+        const category = this.value;
+        const rows = document.querySelectorAll('.term-row');
+        
+        rows.forEach(row => {
+            if (!category || row.dataset.category === category) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+{% endblock %}

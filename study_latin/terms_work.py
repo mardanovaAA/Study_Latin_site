@@ -9,3 +9,14 @@ def write_term(latin_term, transcription_term, translation_term, category_term):
     new_terms = [title] + terms_sorted
     with open("./data/terms.csv", "w", encoding="utf-8") as f:
         f.write("\n".join(new_terms))
+
+def get_terms_for_table():
+    terms = []
+    with open("./data/terms.csv", "r", encoding="utf-8") as f:
+        cnt = 1
+        for line in f.readlines():
+            category_term,latin_term,transcription_term,translation_term = line.split(";")
+            terms.append([cnt, category_term,latin_term,transcription_term,translation_term])
+            cnt += 1
+
+    return terms

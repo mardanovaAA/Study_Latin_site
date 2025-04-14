@@ -7,7 +7,11 @@ def index(request):
     return render(request, "index.html")
 
 def terms_list(request):
-    return render(request, "terms_list.html")
+    terms = terms_work.get_terms_for_table()
+    print(terms)
+    return render(request, "terms_list.html", context={"terms": terms})
+    # return render(request, "terms_list.html")
+
 
 def phrases_list(request):
     return render(request, "phrases_list.html")
