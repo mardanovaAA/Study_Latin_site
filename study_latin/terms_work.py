@@ -1,4 +1,7 @@
 def write_term(latin_term, transcription_term, translation_term, category_term):
+    '''
+    This function write new term into the file
+    '''
     new_term_line = f"{category_term};{latin_term};{transcription_term};{translation_term}"
     with open("./data/terms.csv", "r", encoding="utf-8") as f:
         existing_terms = [l.strip("\n") for l in f.readlines()]
@@ -11,6 +14,9 @@ def write_term(latin_term, transcription_term, translation_term, category_term):
         f.write("\n".join(new_terms))
 
 def get_terms_for_table():
+    '''
+    This function return array containing information from the file 
+    '''
     terms = []
     with open("./data/terms.csv", "r", encoding="utf-8") as f:
         cnt = 1

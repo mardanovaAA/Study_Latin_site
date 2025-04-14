@@ -1,4 +1,7 @@
 def write_term(latin_phrase, transcription_phrase, translation_phrase, source_phrase):
+    '''
+    This function write new term into the file
+    '''
     new_term_line = f"{latin_phrase};{transcription_phrase};{translation_phrase};{source_phrase}"
     with open("./data/phrases.csv", "r", encoding="utf-8") as f:
         existing_terms = [l.strip("\n") for l in f.readlines()]
@@ -11,6 +14,9 @@ def write_term(latin_phrase, transcription_phrase, translation_phrase, source_ph
         f.write("\n".join(new_terms))
 
 def get_phrases_for_table():
+    '''
+    This function return array containing information from the file 
+    '''
     phrases = []
     with open("./data/phrases.csv", "r", encoding="utf-8") as f:
         cnt = 1
