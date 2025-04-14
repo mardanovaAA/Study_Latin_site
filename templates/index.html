@@ -1,0 +1,98 @@
+{% extends "base_page.html" %}
+
+{% block page-title %}
+Study Latin - Изучение латинского языка
+{% endblock %}
+
+{% block page-lead %}
+Добро пожаловать в Ваш индивидуальный словарь латинского языка! <br/>
+Здесь вы найдёте персонализированный список латинских терминов, а также список крылатых латинских выражений.
+{% endblock %}
+
+{% block content %}
+<div class="container px-4 py-5" id="project-contents">
+    <div class="row mt-5 bg-light p-4 rounded-3">
+        <div class="col-md-6">
+            <h2 class="latin-heading">Латынь - язык науки</h2>
+            <p class="lead">Латынь более 2000 лет оставалась языком европейской учёности, и даже сегодня:</p>
+            <ul class="list">
+                <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i> 60% английской научной лексики имеет латинские корни </li>
+                <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i> В медицине и биологии используется латинская номенклатура</li>
+                <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i> Физические термины: "quantum", "momentum", "inertia" — латинского происхождения</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-burgundy">
+                <div class="card-header bg-burgundy text-white">
+                    <i class="bi bi-quote"></i> Известные латинские выражения
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p><strong>"Scientia potentia est"</strong></p>
+                        <p> <em> Знание — сила </em> </p>
+                    </blockquote>
+                    <hr>
+                    <blockquote class="blockquote mb-0">
+                        <p><strong>"Per aspera ad astra"</strong></p>
+                        <p> <em>Через тернии к звёздам</em> </p>
+                    </blockquote>
+                    <hr>
+                    <blockquote class="blockquote">
+                        <p><strong>"Eppur si muove"</strong></p>
+                        <p> <em>И всё-таки она вертится (Галилей)</em> </p>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h2 class="latin-heading">Основные разделы</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
+        <div class="col d-flex">
+            <div>
+                <h3 class="fs-2">Термины на латыни</h3>
+                <p>Словарь латинских терминов с переводами и транскрипциями. Содержимое можно расширять.</p>
+                <a href="/terms_list" class="btn btn-latin-outline px-4 py-2 rounded-pill">
+                    Открыть словарь терминов
+                </a>
+                <p> </p>
+                <a href="/add_term" class="btn btn-latin-outline px-4 py-2 rounded-pill">
+                    Добавить термин
+                </a>
+            </div>
+        </div>
+        
+        <div class="col d-flex">
+            <div>
+                <h3 class="fs-2">Крылатые выражения</h3>
+                <p>Список полюбившихся крылатых выражений и цитат на латыни. Содержимое можно расширять.</p>
+                <a href="/phrases_list" class="btn btn-latin-outline px-4 py-2 rounded-pill">
+                    Открыть список
+                </a>
+                <p> </p>
+                <a href="/add_phrase" class="btn btn-latin-outline px-4 py-2 rounded-pill">
+                    Добавить выражение
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+
+<div class="container px-4 py-5 bg-light rounded-10">
+    <h2 class="latin-heading">О проекте</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="py-1">Цель проекта</h4>
+            <p>Проект был создан в качестве учебного задания "Разработка Web-приложения на образовательную тематику на Django" для Цифровой Кафедры МФТИ по курсу "Python для решения прикладных задач"</p>
+        </div>
+        <div class="col-md-6">
+            <h4 class="py-1">Исходный код</h4>
+            <a href="https://github.com/mardanovaAA/Study_Latin_site" class="btn btn-latin-outline px-4 py-2 rounded-pill">
+                GitHub репозиторий
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
