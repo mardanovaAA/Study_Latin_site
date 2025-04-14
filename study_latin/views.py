@@ -8,13 +8,12 @@ def index(request):
 
 def terms_list(request):
     terms = terms_work.get_terms_for_table()
-    print(terms)
     return render(request, "terms_list.html", context={"terms": terms})
     # return render(request, "terms_list.html")
 
-
 def phrases_list(request):
-    return render(request, "phrases_list.html")
+    phrases = phrases_work.get_phrases_for_table()
+    return render(request, "phrases_list.html", context={"phrases": phrases})
 
 def add_term(request):
     return render(request, "add_term.html")

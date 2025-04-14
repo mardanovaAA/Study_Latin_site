@@ -1,1 +1,58 @@
 {% extends "base_page.html" %}
+
+{% block page-title %}
+Крылатые латинские выражения
+{% endblock %}
+
+{% block page-lead %}
+Коллекция Ваших любимых латинских изречений с переводами и источниками
+{% endblock %}
+
+{% block content %}
+<div class="container px-4 py-5" id="latin-phrases">
+
+    <!-- Карточки с фразами -->
+    <div class="row row-cols-1 row-cols-md-2 g-4" id="phrasesContainer">
+        {% for cnt, latin_phrase, transcription_phrase, translation_phrase, source_phrase in phrases %}
+        <div class="col phrase-card">
+            <div class="card h-100 border-burgundy">
+                <div class="card-header bg-burgundy text-white">
+                    <h5 class="card-title mb-0 "><em>{{ latin_phrase }}</em></h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h6 class="text-burgundy">Транскрипция:</h6>
+                        <p>{{ transcription_phrase }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <h6 class="text-burgundy">Перевод:</h6>
+                        <p>{{ translation_phrase }}</p>
+                    </div>
+                    <div class="mb-1">
+                        <h6 class="text-burgundy">Источник:</h6>
+                        <p ><em>{{ source_phrase }}</em></p>
+                    </div>
+                </div>
+                <div class="card-footer text-muted small">
+                    Выражение №{{ cnt }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card border-burgundy">
+                <div class="card-body py-2">
+                    <div class="d-flex justify-content-between">
+                        <span class="small">Всего выражений: <strong>{{ phrases|length }}</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
